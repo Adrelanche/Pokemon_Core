@@ -22,12 +22,12 @@ git clone https://github.com/Adrelanche/Pokemon_Core.git
 
 Crie um arquivo .env na raiz do projeto e adicione as variáveis de ambiente necessárias:
 ````sh
-SECRET_KEY=suachavesecreta  
-DB_NAME=pokemon_db  
-DB_USER=postgres  
-DB_PASSWORD=postgres  
-DB_HOST=db  
-DB_PORT=5432  
+SECRET_KEY=
+DB_NAME=
+DB_USER= 
+DB_PASSWORD=
+DB_HOST= 
+DB_PORT=5432
 ````
 ## 3. Construir e Subir os Containers 🏗️🐳
 
