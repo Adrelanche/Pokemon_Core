@@ -1,16 +1,13 @@
 # 📚 Team Rocket API
-Visão Geral 📜
+## Visão Geral 📜
 
 Este é um projeto backend desenvolvido com Django e Django REST Framework, utilizando PostgreSQL como banco de dados e JWT para autenticação. O projeto está containerizado com Docker para facilitar a implantação e execução. 🎯🔧📦
-Tecnologias Utilizadas ⚙️
+## Tecnologias Utilizadas ⚙️
 
-    Python
-
-    Django
-
-    PostgreSQL
-
-    Docker
+- Python  
+- Django  
+- PostgreSQL  
+- Docker  
 
 ## Configuração do Ambiente 🏗️📝
 1. Clonar o Repositório 🔄📂💾
