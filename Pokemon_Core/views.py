@@ -7,6 +7,7 @@ from .models import FavoritePokemon
 from .serializers import UserRegistrationSerializer
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
+from django.db import transaction, models
 
 class FavoritePokemonToggleView(APIView):
     permission_classes = [IsAuthenticated]
@@ -57,6 +58,25 @@ class FavoritePokemonOrder(APIView):
         except FavoritePokemon.DoesNotExist:
             return Response({"error": "Favorite Pokémon not found."}, status=status.HTTP_404_NOT_FOUND)
         
+        old_order = favorite_pokemon.order
+
+        if old_order == order:
+            return Response({"message": "No changes needed."}, status=status.HTTP_200_OK)
+        
+        with transaction.atomic():
+            if old_order > order:
+                FavoritePokemon.objects.filter(
+                    user=request.user,
+                    order__gte=order,
+                    order__lt=old_order
+                ).update(order=models.F('order') + 1)
+            else:
+                FavoritePokemon.objects.filter(
+                    user=request.user,
+                    order__gt=old_order,
+                    order__lte=order
+                ).update(order=models.F('order') - 1)
+
         favorite_pokemon.order = order
         favorite_pokemon.save()
 
